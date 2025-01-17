@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentence Repeater</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+        }
+        #output {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        li {
+            padding: 5px;
+            background: #f0f0f0;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentence Repeater</h1>
+    <label for="sentence">Enter a sentence:</label><br>
+    <input type="text" id="sentence" placeholder="Write something..."><br>
+    <label for="count">How many times to repeat?</label><br>
+    <input type="number" id="count" min="1" value="1"><br>
+    <button onclick="generateList()">Generate List</button>
+    <ul id="output"></ul>
+
+    <script>
+        function generateList() {
+            const sentence = document.getElementById('sentence').value;
+            const count = parseInt(document.getElementById('count').value, 10);
+            const output = document.getElementById('output');
+            
+            // Clear previous output
+            output.innerHTML = "";
+
+            if (sentence.trim() === '') {
+                alert("Please enter a valid sentence.");
+                return;
+            }
+
+            if (isNaN(count) || count < 1) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            // Generate list items
+            for (let i = 0; i < count; i++) {
+                const li = document.createElement('li');
+                li.textContent = `${i + 1}. ${sentence}`;
+                output.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
